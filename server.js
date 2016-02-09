@@ -28,13 +28,14 @@ app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
 
+
+require('./app/routes.js')(app);
+
+
 // =======================
 // routes ================
 // =======================
 // basic route
-app.get('/', function(req, res) {
-    res.send('Hello! The API is at http://localhost:' + port + '/api');
-});
 
 app.post('/setup', function(req, res) {
     console.log(req);
