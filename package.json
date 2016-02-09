@@ -1,0 +1,12 @@
+{
+  "name": "rest-login",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^5.5.4",
+    "mongoose": "~4.0.0",
+    "morgan": "^1.6.1"
+  }
+}
