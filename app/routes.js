@@ -8,20 +8,26 @@ module.exports = function(app) {
         res.send('Hello! The API is at http://localhost: port /api');
     });
 
+    app.get('/signup', function(req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.render('signup.ejs', { message: 'signupMessage' });
+    });
+
     app.post('/createfbuser', function(req, res) {
-        console.log(req.query);
-        UserRest.findOne({'fb.email': req.query.email}, function(err, user) {
+        console.log(req.body.email);
+        UserRest.findOne({'fb.email': req.body.email}, function(err, user) {
 
             if (err) throw err;
 
             if (!user) {
-                console.log(req);
+                //console.log(req);
                 // create a sample user
                 var nick = new UserRest();
-                nick.fb.fbid= req.query.fbid;
-                nick.fb.token= req.query.token;
-                nick.fb.name= req.query.name;
-                nick.fb.email= req.query.email;
+                nick.fb.fbid= req.body.fbid;
+                nick.fb.token= req.body.token;
+                nick.fb.name= req.body.name;
+                nick.fb.email= req.body.email;
 
                 // save the sample user
                 nick.save(function(err) {
@@ -31,7 +37,7 @@ module.exports = function(app) {
                     //res.json({ success: true });
                 });
                 res.json({ success: true, message: 'User successfully created' });
-            } {
+            } else{
                 res.json({
                     success: false,
                     message: 'user with id already exists '
