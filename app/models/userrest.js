@@ -16,8 +16,34 @@ var userSchema = mongoose.Schema({
         fbid: String,
         token: String, // we will save the token that facebook provides to the user
         name: String, // look at the passport user profile to see how names are returned
-        email: String,
+        email: String
+    }
+});
+
+var eventSchema = mongoose.Schema({
+
+    Event:{
+        eventName:String,
+        eventType:String,
+        description:String,
+        eventID:String,
+        venue:{
+            name:String,
+            location:{
+                lat:String,
+                lon:String,
+                address:String
+            }
+        },
+        eventDetails:{
+            hosts:{ //this should be an array
+                id:String,
+                name:String,
+                picUri:String
+            }
+        }
     }
 });
 
 module.exports = mongoose.model('UserRest', userSchema);
+module.exports = mongoose.model('EventRest',eventSchema);
