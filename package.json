@@ -4,12 +4,15 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "cheerio": "^0.20.0",
+    "connect-flash": "~0.1.1",
+    "ejs": "~0.8.5",
     "express": "^4.13.4",
+    "express-session": "~1.0.0",
+    "fs": "0.0.2",
     "jsonwebtoken": "^5.5.4",
     "mongoose": "~4.0.0",
     "morgan": "^1.6.1",
-    "connect-flash" : "~0.1.1",
-    "ejs" : "~0.8.5",
-    "express-session": "~1.0.0"
+    "require": "^2.4.20"
   }
 }

@@ -4,6 +4,6 @@
 module.exports = {
 
     'secret': 'ilovescotchyscotch',
-    'database': 'mongodb://testapp.com:27017/restlogindb'
+    'database': 'mongodb://localhost:27017/restlogindb'
 
 };
