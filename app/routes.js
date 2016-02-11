@@ -10,6 +10,32 @@ module.exports = function(app) {
         res.send('Hello! The API is at http://localhost: port /api');
     });
 
+    app.get('/distance', function(req, res) {
+        // render the page and pass in any flash data if it exists
+        res.render('distance.ejs', { message: 'createeventMessage' });
+    });
+
+    app.post('/distance',function(req,res){
+        var lat1=req.body.lat1;
+        var lon1=req.body.lon1;
+        var lat2=req.body.lat2;
+        var lon2=req.body.lon2;
+        var R = 6371; // Radius of the earth in km
+        var dLat = (lat2-lat1)* (Math.PI/180);  // deg2rad
+        var dLon = (lon2-lon1)* (Math.PI/180);
+        var a =
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos((lat1)* (Math.PI/180)) * Math.cos((lat2)* (Math.PI/180)) *
+                Math.sin(dLon/2) * Math.sin(dLon/2)
+            ;
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var d = R * c; // Distance in km
+        res.json({ success: true, message: 'distance successfully found' ,distance:d});
+        //return d;
+
+
+    });
+
     app.get('/createevent', function(req, res) {
         // render the page and pass in any flash data if it exists
         res.render('createevent.ejs', { message: 'createeventMessage' });
@@ -54,7 +80,7 @@ module.exports = function(app) {
     });
 
 
-    // TODO: route to authenticate and login a user (POST http://localhost:8080/signin)
+    // TODO: route to authenticate and login a user (POST http://localhost:8080/fblogin)
     app.get('/fblogin', function(req, res) {
 
         // render the page and pass in any flash data if it exists

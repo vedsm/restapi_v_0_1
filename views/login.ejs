@@ -9,7 +9,7 @@
         body        { padding-top:80px; }
     </style>
 </head>
-<body>
+<body onload="getLocation()">
 <div class="container">
 
     <div class="col-sm-6 col-sm-offset-3">
@@ -40,8 +40,20 @@
                 <input type="text" class="form-control" name="email">
             </div>
 
+            <div class="form-group">
+                <label id="locationbox">location</label>
+                <input type="text" class="form-control" name="location">
+            </div>
+
+            <div class="form-group" >
+                <label>misc</label>
+                <input type="text" class="form-control" name="misc">
+            </div>
+
             <button type="submit" class="btn btn-warning btn-lg">Login</button>
         </form>
+
+        <button type="submit" class="btn btn-warning btn-lg" id="locationfinderbtn">getlocatiion</button>
 
         <hr>
 
@@ -53,3 +65,18 @@
 </div>
 </body>
 </html>
+<script>
+    var x = document.getElementById("locationbox");
+    function getLocation() {
+        console.log("inside getLocation() function");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+    }
+</script>
